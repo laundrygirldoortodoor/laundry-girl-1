@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { User, ShieldCheck } from "lucide-react";
+import { User, ShieldCheck, Shirt, Truck } from "lucide-react";
 import logo from "@/assets/laundry_girl.png";
 
 const Landing = () => {
@@ -25,7 +25,7 @@ const Landing = () => {
           <p className="text-xs tracking-[0.12em] text-secondary">DOOR TO DOOR DRY CLEAN SERVICE</p>
         </div>
 
-        <div className="flex flex-col gap-4 w-full mt-4">
+        <div className="flex flex-col gap-3 w-full mt-4">
           <button
             onClick={() => navigate("/customer-login")}
             className="flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg shadow-lg hover:opacity-90 transition-opacity"
@@ -33,6 +33,22 @@ const Landing = () => {
             <User className="w-5 h-5" />
             Customer Login
           </button>
+          <div className="flex gap-3">
+            <button
+              onClick={() => navigate("/washer-login")}
+              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-border text-foreground font-medium text-sm hover:bg-muted transition-colors"
+            >
+              <Shirt className="w-4 h-4" />
+              Washer
+            </button>
+            <button
+              onClick={() => navigate("/delivery-login")}
+              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-border text-foreground font-medium text-sm hover:bg-muted transition-colors"
+            >
+              <Truck className="w-4 h-4" />
+              Delivery
+            </button>
+          </div>
         </div>
 
         <p className="text-muted-foreground text-xs mt-6">Fresh clothes, delivered to your door</p>

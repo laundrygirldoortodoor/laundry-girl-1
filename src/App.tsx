@@ -7,6 +7,10 @@ import CustomerHome from "@/pages/CustomerHome";
 import AdminLogin from "@/pages/AdminLogin";
 import AdminPanel from "@/pages/AdminPanel";
 import SuperAdminLogin from "@/pages/SuperAdminLogin";
+import WasherLogin from "@/pages/WasherLogin";
+import WasherDashboard from "@/pages/WasherDashboard";
+import DeliveryLogin from "@/pages/DeliveryLogin";
+import DeliveryDashboard from "@/pages/DeliveryDashboard";
 
 function App() {
   return (
@@ -20,6 +24,10 @@ function App() {
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/super-admin-login" element={<SuperAdminLogin />} />
+        <Route path="/washer-login" element={<WasherLogin />} />
+        <Route path="/washer-dashboard" element={<WasherDashboard />} />
+        <Route path="/delivery-login" element={<DeliveryLogin />} />
+        <Route path="/delivery-dashboard" element={<DeliveryDashboard />} />
       </Routes>
     </BrowserRouter>
   );

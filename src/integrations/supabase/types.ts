@@ -274,6 +274,7 @@ export type Database = {
         Row: {
           created_at: string
           id: string
+          is_approved: boolean
           mobile_number: string | null
           name: string
           panchayath_id: string | null
@@ -284,6 +285,7 @@ export type Database = {
         Insert: {
           created_at?: string
           id?: string
+          is_approved?: boolean
           mobile_number?: string | null
           name?: string
           panchayath_id?: string | null
@@ -294,6 +296,7 @@ export type Database = {
         Update: {
           created_at?: string
           id?: string
+          is_approved?: boolean
           mobile_number?: string | null
           name?: string
           panchayath_id?: string | null

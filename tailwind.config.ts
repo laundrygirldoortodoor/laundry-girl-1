@@ -97,6 +97,41 @@ export default {
             opacity: "1",
             transform: "scale(1)"
           }
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" }
+        },
+        "float-up": {
+          "0%": { transform: "translateY(0) scale(1)", opacity: "0" },
+          "10%": { opacity: "0.7" },
+          "90%": { opacity: "0.5" },
+          "100%": { transform: "translateY(-110vh) scale(1.35)", opacity: "0" }
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-140%) skewX(-20deg)" },
+          "100%": { transform: "translateX(240%) skewX(-20deg)" }
+        },
+        "ken-burns": {
+          "0%": { transform: "scale(1) translate3d(0,0,0)" },
+          "100%": { transform: "scale(1.09) translate3d(-1.5%, -1%, 0)" }
+        },
+        "pop-in": {
+          "0%": { opacity: "0", transform: "scale(0.6) translateY(12px)" },
+          "60%": { opacity: "1", transform: "scale(1.06) translateY(0)" },
+          "100%": { opacity: "1", transform: "scale(1)" }
+        },
+        "bounce-soft": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-6px)" }
+        },
+        "arrow-slide": {
+          "0%, 100%": { transform: "translateX(0)", opacity: "0.5" },
+          "50%": { transform: "translateX(6px)", opacity: "1" }
+        },
+        "progress-fill": {
+          "0%": { width: "0%" },
+          "100%": { width: "100%" }
         }
       },
       animation: {
@@ -104,11 +139,22 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in-up": "fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
         "scale-in": "scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
+        "gradient-shift": "gradient-shift 12s ease-in-out infinite",
+        "float-up": "float-up 12s linear infinite",
+        shimmer: "shimmer 2.4s ease-in-out 0.7s infinite",
+        "ken-burns": "ken-burns 18s ease-in-out infinite alternate",
+        "pop-in": "pop-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "bounce-soft": "bounce-soft 2.6s ease-in-out infinite",
+        "arrow-slide": "arrow-slide 1.6s ease-in-out infinite",
+        "progress-fill": "progress-fill 2.5s linear forwards",
       },
       backgroundImage: {
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-overlay': 'var(--gradient-overlay)',
+        'gradient-splash': 'var(--gradient-splash)',
+        'gradient-glow': 'var(--gradient-glow)',
       },
+
       boxShadow: {
         'architectural': 'var(--shadow-architectural)',
         'elegant': 'var(--shadow-elegant)',

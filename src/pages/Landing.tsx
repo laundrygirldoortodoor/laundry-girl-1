@@ -41,10 +41,6 @@ const Landing = () => {
           </div>
         </div>
 
-        <HeroCollage />
-        <HowItWorks />
-        <TrustStrip />
-
         {/* Login actions */}
         <div className="flex flex-col gap-3 w-full max-w-sm mx-auto">
           <button
@@ -71,6 +67,11 @@ const Landing = () => {
             </button>
           </div>
         </div>
+
+        <HeroCollage />
+        <HowItWorks />
+        <TrustStrip />
+
 
         <p className="text-muted-foreground text-xs text-center pb-4">Fresh clothes, delivered to your door</p>
       </div>

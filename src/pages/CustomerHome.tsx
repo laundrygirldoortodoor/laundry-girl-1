@@ -90,101 +90,98 @@ const CustomerHomeContent = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col app-bg">
       {/* Header */}
-      <div className="bg-primary text-primary-foreground px-4 py-4 flex items-center justify-between">
+      <div className="sticky top-0 z-30 glass-surface px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img src={logo} alt="Logo" className="w-8 h-8 object-contain" />
+          <div className="w-10 h-10 rounded-xl bg-gradient-hero flex items-center justify-center shadow-elegant">
+            <img src={logo} alt="Laundry Girl logo" className="w-7 h-7 object-contain" />
+          </div>
           <div>
-            <p className="text-xs opacity-80">Welcome back</p>
-            <p className="font-bold text-base">{profile?.name || "Customer"}</p>
+            <p className="text-xs font-medium text-muted-foreground">Welcome back</p>
+            <p className="font-bold text-base text-foreground leading-tight">{profile?.name || "Customer"}</p>
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <button onClick={() => setCartOpen(true)} className="relative opacity-90 hover:opacity-100 transition-opacity">
+        <div className="flex items-center gap-2">
+          <button onClick={() => setCartOpen(true)} aria-label="Open cart" className="relative w-10 h-10 rounded-xl border border-border/60 bg-card/70 backdrop-blur flex items-center justify-center text-foreground hover:bg-card transition-colors">
             <ShoppingCart className="w-5 h-5" />
             {itemCount > 0 && (
-              <span className="absolute -top-1.5 -right-1.5 bg-destructive text-destructive-foreground text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+              <span className="absolute -top-1.5 -right-1.5 bg-destructive text-destructive-foreground text-[10px] font-bold rounded-full w-5 h-5 flex items-center justify-center border-2 border-background">
                 {itemCount}
               </span>
             )}
           </button>
-          <button onClick={handleSignOut} className="opacity-80 hover:opacity-100 transition-opacity">
+          <button onClick={handleSignOut} aria-label="Sign out" className="w-10 h-10 rounded-xl border border-border/60 bg-card/70 backdrop-blur flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors">
             <LogOut className="w-5 h-5" />
           </button>
         </div>
       </div>
 
       {/* Tabs */}
-      <div className="flex bg-muted border-b border-border">
-        <button
-          onClick={() => setTab("laundry")}
-          className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium border-b-2 transition-colors ${
-            tab === "laundry" ? "border-primary text-primary bg-background" : "border-transparent text-muted-foreground"
-          }`}
-        >
-          <Shirt className="w-4 h-4" /> Laundry
-        </button>
-        <button
-          onClick={() => setTab("services")}
-          className={`flex-1 flex items-center justify-center gap-2 py-3 text-sm font-medium border-b-2 transition-colors ${
-            tab === "services" ? "border-primary text-primary bg-background" : "border-transparent text-muted-foreground"
-          }`}
-        >
-          <Wrench className="w-4 h-4" /> Add-ons
-        </button>
+      <div className="px-4 pt-4">
+        <div className="flex gap-1 p-1 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-xl">
+          <button
+            onClick={() => setTab("laundry")}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              tab === "laundry" ? "bg-gradient-hero text-primary-foreground shadow-elegant" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Shirt className="w-4 h-4" /> Laundry
+          </button>
+          <button
+            onClick={() => setTab("services")}
+            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm font-semibold transition-all ${
+              tab === "services" ? "bg-gradient-hero text-primary-foreground shadow-elegant" : "text-muted-foreground hover:text-foreground"
+            }`}
+          >
+            <Wrench className="w-4 h-4" /> Add-ons
+          </button>
+        </div>
       </div>
 
-      <div className="flex-1 p-4 overflow-auto pb-24">
+      <div className="flex-1 p-4 overflow-auto pb-28">
         {/* Laundry Features */}
         {tab === "laundry" && (
           <div>
-            <p className="text-sm text-muted-foreground mb-4">Tap a price to add to your cart</p>
+            <p className="text-sm font-medium text-muted-foreground mb-4">Tap a price to add it to your cart</p>
             <div className="space-y-3">
               {features.map((f) => (
-                <div key={f.id} className="bg-card rounded-xl border border-border p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="flex items-center gap-2">
-                      <Shirt className="w-5 h-5 text-primary" />
-                      <span className="font-semibold text-foreground">{f.name}</span>
+                <div key={f.id} className="glass-card p-4">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2.5">
+                      <div className="w-9 h-9 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+                        <Shirt className="w-5 h-5" />
+                      </div>
+                      <span className="font-bold text-foreground">{f.name}</span>
                     </div>
-                    <span className="text-xs capitalize bg-muted text-muted-foreground px-2 py-0.5 rounded-full">{f.category}</span>
+                    <span className="text-[11px] font-semibold capitalize bg-muted text-muted-foreground px-2.5 py-1 rounded-full">{f.category}</span>
                   </div>
-                  <div className="flex gap-2 flex-wrap">
+                  <div className="grid grid-cols-3 gap-2">
                     {f.price_wash != null && (
                       <button
                         onClick={() => addLaundryItem(f, "wash", f.price_wash!)}
-                        className="bg-primary/10 hover:bg-primary/20 text-primary rounded-lg px-3 py-1.5 text-center transition-colors group"
+                        className="rounded-xl border border-primary/25 bg-primary/10 hover:bg-primary/20 px-3 py-2 text-left transition-colors"
                       >
-                        <div className="text-xs opacity-70">Wash</div>
-                        <div className="font-bold text-sm flex items-center gap-1">
-                          ₹{f.price_wash}
-                          <Plus className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
+                        <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Wash</div>
+                        <div className="font-bold text-base text-primary flex items-center gap-1">₹{f.price_wash}<Plus className="w-3.5 h-3.5" /></div>
                       </button>
                     )}
                     {f.price_iron != null && (
                       <button
                         onClick={() => addLaundryItem(f, "iron", f.price_iron!)}
-                        className="bg-accent/10 hover:bg-accent/20 text-accent-foreground rounded-lg px-3 py-1.5 text-center transition-colors group"
+                        className="rounded-xl border border-secondary/25 bg-secondary/10 hover:bg-secondary/20 px-3 py-2 text-left transition-colors"
                       >
-                        <div className="text-xs opacity-70">Iron</div>
-                        <div className="font-bold text-sm flex items-center gap-1">
-                          ₹{f.price_iron}
-                          <Plus className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
+                        <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Iron</div>
+                        <div className="font-bold text-base text-secondary flex items-center gap-1">₹{f.price_iron}<Plus className="w-3.5 h-3.5" /></div>
                       </button>
                     )}
                     {f.price_wash_iron != null && (
                       <button
                         onClick={() => addLaundryItem(f, "wash_iron", f.price_wash_iron!)}
-                        className="bg-secondary/10 hover:bg-secondary/20 text-secondary-foreground rounded-lg px-3 py-1.5 text-center transition-colors group"
+                        className="rounded-xl border border-step-three/30 bg-step-three/10 hover:bg-step-three/20 px-3 py-2 text-left transition-colors"
                       >
-                        <div className="text-xs opacity-70">Wash+Iron</div>
-                        <div className="font-bold text-sm flex items-center gap-1">
-                          ₹{f.price_wash_iron}
-                          <Plus className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                        </div>
+                        <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Wash+Iron</div>
+                        <div className="font-bold text-base text-step-three flex items-center gap-1">₹{f.price_wash_iron}<Plus className="w-3.5 h-3.5" /></div>
                       </button>
                     )}
                   </div>
@@ -197,28 +194,28 @@ const CustomerHomeContent = () => {
         {/* Add-on Services */}
         {tab === "services" && (
           <div>
-            <p className="text-sm text-muted-foreground mb-4">Tap to add home services to your order</p>
+            <p className="text-sm font-medium text-muted-foreground mb-4">Tap to add home services to your order</p>
             <div className="space-y-3">
               {services.map((s) => (
-                <div key={s.id} className="bg-card rounded-xl border border-border p-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center">
+                <div key={s.id} className="glass-card p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <div className="w-11 h-11 shrink-0 rounded-xl bg-gradient-hero text-primary-foreground flex items-center justify-center shadow-elegant">
                         {iconMap[s.icon_name ?? "wrench"]}
                       </div>
-                      <div>
-                        <p className="font-semibold text-foreground">{s.name}</p>
-                        {s.description && <p className="text-xs text-muted-foreground">{s.description}</p>}
+                      <div className="min-w-0">
+                        <p className="font-bold text-foreground truncate">{s.name}</p>
+                        {s.description && <p className="text-xs text-muted-foreground line-clamp-2">{s.description}</p>}
                       </div>
                     </div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 shrink-0">
                       <div className="text-right">
-                        <p className="text-xs text-muted-foreground">Charge</p>
-                        <p className="font-bold text-secondary">₹{s.booking_charge}</p>
+                        <p className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Charge</p>
+                        <p className="font-bold text-foreground">₹{s.booking_charge}</p>
                       </div>
                       <button
                         onClick={() => addAddonItem(s)}
-                        className="bg-primary text-primary-foreground rounded-xl px-3 py-2 text-sm font-semibold hover:opacity-90 transition-opacity flex items-center gap-1"
+                        className="bg-gradient-hero text-primary-foreground rounded-xl px-3.5 py-2 text-sm font-bold hover:opacity-90 transition-opacity flex items-center gap-1 shadow-elegant"
                       >
                         <Plus className="w-4 h-4" /> Add
                       </button>
@@ -230,6 +227,7 @@ const CustomerHomeContent = () => {
           </div>
         )}
       </div>
+
 
       {/* Floating Cart Bar */}
       {itemCount > 0 && (

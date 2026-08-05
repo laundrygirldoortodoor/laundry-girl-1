@@ -5,6 +5,7 @@ import Bubbles from "@/components/landing/Bubbles";
 import HeroCollage from "@/components/landing/HeroCollage";
 import HowItWorks from "@/components/landing/HowItWorks";
 import TrustStrip from "@/components/landing/TrustStrip";
+import WhatsAppHelp from "@/components/landing/WhatsAppHelp";
 
 const Landing = () => {
   const navigate = useNavigate();

@@ -234,7 +234,7 @@ const CustomerHomeContent = () => {
         <div className="fixed bottom-0 left-0 right-0 z-40 p-4">
           <button
             onClick={() => setCartOpen(true)}
-            className="w-full max-w-lg mx-auto flex items-center justify-between bg-primary text-primary-foreground rounded-2xl px-5 py-4 shadow-lg hover:opacity-95 transition-opacity"
+            className="w-full max-w-lg mx-auto flex items-center justify-between bg-gradient-hero text-primary-foreground rounded-2xl px-5 py-4 shadow-architectural hover:opacity-95 transition-opacity"
           >
             <div className="flex items-center gap-3">
               <div className="bg-primary-foreground/20 rounded-lg px-2.5 py-1 text-sm font-bold">

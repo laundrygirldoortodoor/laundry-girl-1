@@ -1,4 +1,4 @@
-import collage from "@/assets/laundry-girl-collage.png.asset.json";
+import collage from "@/assets/hero-collage.webp";
 import { useReveal } from "@/hooks/useReveal";
 
 const HeroCollage = () => {
@@ -13,10 +13,13 @@ const HeroCollage = () => {
         }`}
       >
         <img
-          src={collage.url}
+          src={collage}
           alt="How Laundry Girl works: customer books on the app, delivery staff collects at the doorstep, washing partner washes, dries and folds"
           className="w-full h-auto animate-ken-burns"
+          width={1200}
+          height={800}
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-overlay" aria-hidden="true" />
         <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">

@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { User, ShieldCheck, Shirt, Truck } from "lucide-react";
-import logo from "@/assets/laundry_girl.png";
+import logo from "@/assets/laundry_girl.webp";
 import Bubbles from "@/components/landing/Bubbles";
 import HeroCollage from "@/components/landing/HeroCollage";
 import HowItWorks from "@/components/landing/HowItWorks";
 import TrustStrip from "@/components/landing/TrustStrip";
+import WhatsAppHelp from "@/components/landing/WhatsAppHelp";
 
 const Landing = () => {
   const navigate = useNavigate();
@@ -75,6 +76,8 @@ const Landing = () => {
 
         <p className="text-muted-foreground text-xs text-center pb-4">Fresh clothes, delivered to your door</p>
       </div>
+
+      <WhatsAppHelp />
     </div>
   );
 };

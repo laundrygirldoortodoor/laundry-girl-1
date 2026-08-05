@@ -5,10 +5,10 @@ import { toast } from "sonner";
 import {
   Users, ShieldCheck, MapPin, Shirt, Wrench,
   LogOut, Plus, Pencil, Trash2, ChevronLeft,
-  X, Check, Shield, Star, Package, UserCheck, Truck
+  X, Check, Shield, Star, Package, UserCheck, Truck, Settings, MessageCircle
 } from "lucide-react";
 
-type Tab = "bookings" | "customers" | "admins" | "staff" | "locations" | "features" | "services";
+type Tab = "bookings" | "customers" | "admins" | "staff" | "locations" | "features" | "services" | "settings";
 
 interface Profile {
   id: string;
@@ -94,6 +94,8 @@ const AdminPanel = () => {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [featureForm, setFeatureForm] = useState({ name: "", category: "clothing", price_wash: "", price_iron: "", price_wash_iron: "" });
   const [serviceForm, setServiceForm] = useState({ name: "", description: "", category: "home", booking_charge: "30", icon_name: "wrench" });
+  const [settingsForm, setSettingsForm] = useState({ whatsapp_number: "", whatsapp_message: "" });
+  const [savingSettings, setSavingSettings] = useState(false);
 
   useEffect(() => { checkAuth(); }, []);
   useEffect(() => { if (userRole) fetchData(); }, [activeTab, userRole]);
@@ -170,6 +172,25 @@ const AdminPanel = () => {
         }
       }
     }
+    if (activeTab === "settings") {
+      const { data } = await supabase.from("app_settings").select("key, value");
+      if (data) {
+        const map = Object.fromEntries(data.map(r => [r.key, r.value ?? ""]));
+        setSettingsForm({
+          whatsapp_number: map.whatsapp_number ?? "",
+          whatsapp_message: map.whatsapp_message ?? "",
+        });
+      }
+    }
+  };
+
+  const saveSettings = async () => {
+    setSavingSettings(true);
+    const rows = Object.entries(settingsForm).map(([key, value]) => ({ key, value }));
+    const { error } = await supabase.from("app_settings").upsert(rows, { onConflict: "key" });
+    setSavingSettings(false);
+    if (error) toast.error(error.message);
+    else toast.success("Settings saved!");
   };
 
   const handleSignOut = async () => { await supabase.auth.signOut(); navigate("/landing"); };
@@ -261,6 +282,7 @@ const AdminPanel = () => {
     { id: "locations" as Tab, label: "Locations", icon: MapPin },
     { id: "features" as Tab, label: "Features", icon: Shirt },
     { id: "services" as Tab, label: "Services", icon: Wrench },
+    { id: "settings" as Tab, label: "Settings", icon: Settings },
   ];
 
   const statusColor = (s: string) => {
@@ -533,6 +555,43 @@ const AdminPanel = () => {
                   {s.description && <p className="text-xs text-muted-foreground mt-1">{s.description}</p>}
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {/* === SETTINGS TAB === */}
+        {activeTab === "settings" && (
+          <div className="max-w-md">
+            <h3 className="font-semibold text-foreground flex items-center gap-2 mb-4">
+              <MessageCircle className="w-5 h-5 text-primary" /> WhatsApp Help
+            </h3>
+            <div className="bg-card rounded-xl border border-border p-4 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">WhatsApp Number</label>
+                <input
+                  value={settingsForm.whatsapp_number}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, whatsapp_number: e.target.value })}
+                  placeholder="919876543210 (with country code)"
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
+                />
+                <p className="text-xs text-muted-foreground mt-1">Include country code, digits only. Leave empty to hide the chat button.</p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Default Message</label>
+                <textarea
+                  value={settingsForm.whatsapp_message}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, whatsapp_message: e.target.value })}
+                  rows={3}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
+                />
+              </div>
+              <button
+                onClick={saveSettings}
+                disabled={savingSettings}
+                className="w-full bg-primary text-primary-foreground py-2 rounded-lg font-medium hover:opacity-90 disabled:opacity-60"
+              >
+                {savingSettings ? "Saving..." : "Save Settings"}
+              </button>
             </div>
           </div>
         )}

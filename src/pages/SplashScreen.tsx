@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "@/assets/laundry_girl.png";
+import logo from "@/assets/laundry_girl.webp";
 import Bubbles from "@/components/landing/Bubbles";
 
 const TITLE = "LAUNDRY GIRL";

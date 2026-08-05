@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { User, ShieldCheck, Shirt, Truck } from "lucide-react";
-import logo from "@/assets/laundry_girl.png";
+import logo from "@/assets/laundry_girl.webp";
 import Bubbles from "@/components/landing/Bubbles";
 import HeroCollage from "@/components/landing/HeroCollage";
 import HowItWorks from "@/components/landing/HowItWorks";

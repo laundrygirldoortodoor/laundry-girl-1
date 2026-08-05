@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { LogOut, Shirt, Wrench, Sparkles, Zap, Droplets, Wind, Hammer, Bug, ShoppingCart, Plus, ChevronRight } from "lucide-react";
-import logo from "@/assets/laundry_girl.png";
+import logo from "@/assets/laundry_girl.webp";
 import { CartProvider, useCart } from "@/components/customer/CartContext";
 import CartSheet from "@/components/customer/CartSheet";
 

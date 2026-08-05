@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Mail, Lock, Eye, EyeOff, ShieldCheck } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import logo from "@/assets/laundry_girl.png";
+import logo from "@/assets/laundry_girl.webp";
 
 const SuperAdminLogin = () => {
   const navigate = useNavigate();

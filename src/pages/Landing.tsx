@@ -78,7 +78,6 @@ const Landing = () => {
       </div>
 
       <WhatsAppHelp />
-      </div>
     </div>
   );
 };

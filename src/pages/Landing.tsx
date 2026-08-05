@@ -76,6 +76,9 @@ const Landing = () => {
 
         <p className="text-muted-foreground text-xs text-center pb-4">Fresh clothes, delivered to your door</p>
       </div>
+
+      <WhatsAppHelp />
+      </div>
     </div>
   );
 };

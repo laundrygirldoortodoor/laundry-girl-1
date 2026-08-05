@@ -558,6 +558,43 @@ const AdminPanel = () => {
             </div>
           </div>
         )}
+
+        {/* === SETTINGS TAB === */}
+        {activeTab === "settings" && (
+          <div className="max-w-md">
+            <h3 className="font-semibold text-foreground flex items-center gap-2 mb-4">
+              <MessageCircle className="w-5 h-5 text-primary" /> WhatsApp Help
+            </h3>
+            <div className="bg-card rounded-xl border border-border p-4 space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">WhatsApp Number</label>
+                <input
+                  value={settingsForm.whatsapp_number}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, whatsapp_number: e.target.value })}
+                  placeholder="919876543210 (with country code)"
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
+                />
+                <p className="text-xs text-muted-foreground mt-1">Include country code, digits only. Leave empty to hide the chat button.</p>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1">Default Message</label>
+                <textarea
+                  value={settingsForm.whatsapp_message}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, whatsapp_message: e.target.value })}
+                  rows={3}
+                  className="w-full px-3 py-2 rounded-lg border border-border bg-background text-foreground text-sm"
+                />
+              </div>
+              <button
+                onClick={saveSettings}
+                disabled={savingSettings}
+                className="w-full bg-primary text-primary-foreground py-2 rounded-lg font-medium hover:opacity-90 disabled:opacity-60"
+              >
+                {savingSettings ? "Saving..." : "Save Settings"}
+              </button>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* === ORDER DETAIL MODAL === */}
